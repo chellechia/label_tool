@@ -106,7 +106,13 @@ while True:
 		current=int(input('Enter your frame:'))
 		image=toframe(cap,current,total_frame)
 	if key == ord("n"):     #jump next 30 frames
-		current+=30
+		check = current+30
+		if check < total_frame-1:
+			current+=30
+			
+		else:
+			current = total_frame-1
+			print('\nThis is last frame.')
 		image=toframe(cap,current,total_frame)
 	if key == ord("p"):     #jump last 30 frames
 		check = current-30
@@ -117,8 +123,11 @@ while True:
 			current = check
 		image=toframe(cap,current,total_frame)
 	if key == ord("d"):     #jump next frame
-		current+=1
-		image=toframe(cap,current,total_frame)
+		if current < total_frame-1:
+			current+=1
+			image=toframe(cap,current,total_frame)
+		else:
+			print('\nCongrats! This is the last frame!!')
 	if key == ord("e"):     #jump last frame
 		if current == 0:
 			print('\nThis is first images')
